@@ -1,22 +1,36 @@
+import 'package:Projektgrupp4/models/currency.dart';
 import 'package:flutter/material.dart';
 
-class CustomCheckBox extends StatefulWidget {
+class FavoriteCheckBox extends StatefulWidget {
+  FavoriteCheckBox(this.currency);
+
+  final Currency currency;
+
   @override
-  _CustomCheckBoxState createState() => _CustomCheckBoxState();
+  _FavoriteCheckBoxState createState() => _FavoriteCheckBoxState();
 }
 
-class _CustomCheckBoxState extends State<CustomCheckBox> {
+class _FavoriteCheckBoxState extends State<FavoriteCheckBox> {
   bool _isSelected = false;
+  bool isSelectable = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _isSelected = widget.currency.isFavorite;
+  }
 
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        setState(
-          () {
-            _isSelected = !_isSelected;
-          },
-        );
-      },
+      onTap: isSelectable
+          ? () {
+              setState(
+                () {
+                  _isSelected = !_isSelected;
+                },
+              );
+            }
+          : null,
       child: Container(
         child: _isSelected
             ? Icon(
