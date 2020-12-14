@@ -10,10 +10,11 @@ class Currencies extends ChangeNotifier {
               symbol: 'TST$index',
               priceUsd: 130000.0,
               priceBtc: 1,
+              percentChange24Usd: '5',
               isFavorite: false,
             ));
   }
-  List<Currency> _list;
+  List<Currency> _list = [];
 
   List<Currency> get list => _list;
   set list(List<Currency> value) {

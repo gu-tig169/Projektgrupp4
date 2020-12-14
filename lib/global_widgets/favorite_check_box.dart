@@ -2,7 +2,8 @@ import 'package:Projektgrupp4/models/currency.dart';
 import 'package:flutter/material.dart';
 
 class FavoriteCheckBox extends StatefulWidget {
-  FavoriteCheckBox(this.currency);
+  FavoriteCheckBox(this.currency, this.isSelectable);
+  final bool isSelectable;
 
   final Currency currency;
 
@@ -12,7 +13,6 @@ class FavoriteCheckBox extends StatefulWidget {
 
 class _FavoriteCheckBoxState extends State<FavoriteCheckBox> {
   bool _isSelected = false;
-  bool isSelectable = true;
 
   @override
   void initState() {
@@ -22,7 +22,7 @@ class _FavoriteCheckBoxState extends State<FavoriteCheckBox> {
 
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: isSelectable
+      onTap: widget.isSelectable
           ? () {
               setState(
                 () {
@@ -35,12 +35,12 @@ class _FavoriteCheckBoxState extends State<FavoriteCheckBox> {
         child: _isSelected
             ? Icon(
                 Icons.star,
-                color: Colors.grey,
+                color: Colors.yellow[700],
                 size: 35,
               )
             : Icon(
                 Icons.star,
-                color: Colors.yellow[700],
+                color: Colors.grey,
                 size: 35,
               ),
       ),
