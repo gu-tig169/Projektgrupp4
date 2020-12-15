@@ -7,19 +7,24 @@ class MainScreen extends StatefulWidget {
   final NotificationScreen notificationScreen = NotificationScreen();
   final SearchScreen searchScreen = SearchScreen();
   final FavoritesScreen favoritesScreen = FavoritesScreen();
+  final int tabIndex;
+
+  MainScreen(this.tabIndex);
 
   @override
   _MainScreenState createState() => _MainScreenState();
 }
 
-class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateMixin {
+class _MainScreenState extends State<MainScreen>
+    with SingleTickerProviderStateMixin {
   TabController _tabController;
   String _title;
 
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(length: 3, vsync: this)
+      ..index = widget.tabIndex;
     _changeTitle(_tabController.index);
   }
 
