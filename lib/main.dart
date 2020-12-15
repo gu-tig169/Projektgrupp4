@@ -1,5 +1,4 @@
 import 'package:Projektgrupp4/screens/home_screen/home_screen.dart';
-import 'package:Projektgrupp4/screens/main_screen.dart';
 import 'package:Projektgrupp4/states/currencies.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

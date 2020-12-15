@@ -1,5 +1,3 @@
-import 'package:Projektgrupp4/global_widgets/currency_card.dart';
-import 'package:Projektgrupp4/models/currency.dart';
 import 'package:Projektgrupp4/screens/search_screen/currency_list_view.dart';
 import 'package:flutter/material.dart';
 

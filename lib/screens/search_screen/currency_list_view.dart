@@ -8,7 +8,7 @@ class CurrencyListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<Currencies>(
       builder: (context, state, child) => ListView.separated(
-        itemCount: state.list.length,
+        itemCount: state.list?.length,
         itemBuilder: (context, index) => CurrencyCard(state.list[index]),
         separatorBuilder: (context, index) => Divider(),
       ),

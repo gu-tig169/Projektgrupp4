@@ -13,7 +13,7 @@ class CurrencyCard extends StatefulWidget {
 
 class _CurrencyCardState extends State<CurrencyCard> {
   Color _precentageColor() {
-    if (widget.currency.percentChange24Usd[0] == '-') {
+    if (widget.currency.percentChange24hUsd < 0) {
       return Colors.red;
     } else {
       return Colors.green;
@@ -42,10 +42,9 @@ class _CurrencyCardState extends State<CurrencyCard> {
                 flex: 1,
                 child: Container(
                   alignment: Alignment.centerRight,
-                  child: Text('${widget.currency.percentChange24Usd}%',
+                  child: Text('${widget.currency.percentChange24hUsd.toStringAsFixed(2)}%',
                       style: TextStyle(
-                        fontSize:
-                            Theme.of(context).textTheme.headline6.fontSize,
+                        fontSize: Theme.of(context).textTheme.headline6.fontSize,
                         color: _precentageColor(),
                       )),
                 )),
