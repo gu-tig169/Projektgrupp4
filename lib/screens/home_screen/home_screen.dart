@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import '../main_screen.dart';
 
 class HomeScreen extends StatelessWidget {
-  final Widget _favorites = Icon(Icons.star, color: Colors.white, size: 70);
-  final Widget _search = Icon(Icons.search, color: Colors.white, size: 70);
+  final Widget _favorites = Icon(Icons.star, color: Colors.white, size: 40);
+  final Widget _search = Icon(Icons.search, color: Colors.white, size: 40);
   final Widget _notifications =
-      Icon(Icons.notifications, color: Colors.white, size: 70);
+      Icon(Icons.notifications, color: Colors.white, size: 40);
 
   @override
   Widget build(BuildContext context) {
@@ -14,17 +14,19 @@ class HomeScreen extends StatelessWidget {
         appBar: AppBar(
           centerTitle: true,
           title: Text(
-            'Welcome to Crypto 296',
-            style: TextStyle(fontSize: 30),
+            'Crypto 296',
           ),
         ),
         body: Center(
-          child: Column(
-            children: [
-              _customButton(context, 'Favorites', _favorites, 2),
-              _customButton(context, 'Search', _search, 1),
-              _customButton(context, 'Notifications', _notifications, 0),
-            ],
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(0.0, 70.0, 0.0, 0.0),
+            child: Column(
+              children: [
+                _customButton(context, 'Favorites', _favorites, 2),
+                _customButton(context, 'Search', _search, 1),
+                _customButton(context, 'Notifications', _notifications, 0),
+              ],
+            ),
           ),
         ));
   }
@@ -40,7 +42,7 @@ class HomeScreen extends StatelessWidget {
         );
       },
       child: Padding(
-          padding: EdgeInsets.only(top: 60),
+          padding: EdgeInsets.only(top: 70),
           child: Container(
             padding: EdgeInsets.only(top: 30, bottom: 30),
             alignment: FractionalOffset.center,
@@ -54,7 +56,7 @@ class HomeScreen extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.all(8),
                   child: Text(title,
-                      style: TextStyle(fontSize: 40, color: Colors.white)),
+                      style: TextStyle(fontSize: 25, color: Colors.white)),
                 ),
               ],
             ),
