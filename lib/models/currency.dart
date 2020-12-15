@@ -5,7 +5,8 @@ class Currency {
       this.priceUsd,
       this.priceBtc,
       this.lastUpdated,
-      this.isFavorite,
+      this.percentChange24Usd,
+      this.isFavorite = false,
       this.upperThreshold,
       this.lowerThreshold});
 
@@ -14,6 +15,7 @@ class Currency {
   double priceUsd;
   double priceBtc;
   String lastUpdated;
+  String percentChange24Usd;
 
   bool isFavorite;
   double upperThreshold;
