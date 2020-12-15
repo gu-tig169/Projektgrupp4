@@ -19,10 +19,14 @@ class Currencies extends ChangeNotifier {
   }
 
   List<Currency> _list = List<Currency>();
+  bool loading = false;
 
   void fetchMarketData() async {
+    loading = true;
+    notifyListeners();
     List<dynamic> json = await ShrimpyApi.getTickers();
     list = List.generate(json.length, (index) => Currency.fromJson(Map.from(json[index])));
+    loading = false;
     notifyListeners();
   }
 
