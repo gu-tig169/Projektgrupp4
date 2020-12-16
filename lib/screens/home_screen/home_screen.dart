@@ -19,7 +19,7 @@ class HomeScreen extends StatelessWidget {
         ),
         body: Center(
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(0.0, 70.0, 0.0, 0.0),
+            padding: const EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 0.0),
             child: Column(
               children: [
                 _customButton(context, 'Favorites', _favorites, 2),
