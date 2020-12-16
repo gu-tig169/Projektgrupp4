@@ -1,3 +1,4 @@
+import 'package:Projektgrupp4/global_widgets/percentage_text.dart';
 import 'package:Projektgrupp4/models/currency.dart';
 import 'package:Projektgrupp4/screens/currency_screen/currency_screen.dart';
 import 'package:Projektgrupp4/global_widgets/favorite_check_box.dart';
@@ -14,14 +15,6 @@ class CurrencyCard extends StatefulWidget {
 }
 
 class _CurrencyCardState extends State<CurrencyCard> {
-  Color _precentageColor() {
-    if (widget.currency.percentChange24hUsd < 0) {
-      return Colors.red;
-    } else {
-      return Colors.green;
-    }
-  }
-
   @override
   Widget build(
     BuildContext context,
@@ -48,15 +41,13 @@ class _CurrencyCardState extends State<CurrencyCard> {
             Expanded(
                 flex: 1,
                 child: Container(
-                  alignment: Alignment.centerRight,
-                  child: Text(
-                      '${widget.currency.percentChange24hUsd.toStringAsFixed(2)}%',
-                      style: TextStyle(
-                        fontSize:
-                            Theme.of(context).textTheme.headline6.fontSize,
-                        color: _precentageColor(),
-                      )),
-                )),
+                    alignment: Alignment.centerRight,
+                    child: percentageText(
+                        widget.currency.percentChange24hUsd,
+                        TextStyle(
+                          fontSize:
+                              Theme.of(context).textTheme.headline6.fontSize,
+                        )))),
             Expanded(
               flex: 1,
               child: FavoriteCheckBox(
