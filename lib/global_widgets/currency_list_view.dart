@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:loading_animations/loading_animations.dart';
 
 class CurrencyListView extends StatelessWidget {
-  final Currency currency = new Currency(
+ /* final Currency currency = new Currency(
     name: 'TestCurrency',
     symbol: 'TST',
     priceUsd: 130000.0,
@@ -14,9 +14,9 @@ class CurrencyListView extends StatelessWidget {
     percentChange24hUsd: 5,
     isFavorite: true,
     lastUpdated: "igår asså",
-  );
+  );*/
 
-  final bool favoriteIsCalling = true;
+  //final bool favoriteIsCalling = true;
 
   @override
   Widget build(BuildContext context) {
@@ -33,9 +33,7 @@ class CurrencyListView extends StatelessWidget {
                 ? LoadingFlipping.circle()
                 : ListView.separated(
                     itemCount: state.list?.length,
-                    itemBuilder: (context, index) => favoriteIsCalling == true
-                        ? CurrencyCard(currency)
-                        : CurrencyCard(state.list[index]),
+                    itemBuilder: (context, index,) => CurrencyCard(state.list[index]),
                     separatorBuilder: (context, index) => Divider(),
                   ),
           ),
@@ -43,41 +41,46 @@ class CurrencyListView extends StatelessWidget {
       ],
     );
   }
-}
 
-Widget titleBar(context) {
-  return Container(
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        Expanded(
-            flex: 3,
-            child: Text(
-              'Name',
-              style: Theme.of(context).textTheme.headline5,
-              overflow: TextOverflow.ellipsis,
-            )),
-        Expanded(
+
+  Widget titleBar(context) {
+    return Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Expanded(
+              flex: 3,
+              child: Padding(
+                padding: const EdgeInsets.only(left:15),
+                child: Text(
+                  'Name',
+                  style: Theme.of(context).textTheme.headline6,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              )),
+          Expanded(
+              flex: 2,
+              child: Container(
+                alignment: Alignment.centerRight,
+                child: Text('Change',
+                    style: Theme.of(context).textTheme.headline6,
+                  overflow: TextOverflow.ellipsis,
+                      
+                    ),
+              )),
+          Expanded(
             flex: 1,
-            child: Container(
-              alignment: Alignment.centerRight,
-              child: Text('Change (24 h)',
-                  style: TextStyle(
-                    fontSize: Theme.of(context).textTheme.headline6.fontSize,
-                  )),
-            )),
-        Expanded(
-          flex: 1,
-          child: Text(''),
-        )
-      ],
-    ),
-    width: 2000,
-    height: 200,
-    margin: EdgeInsets.all(10),
-    decoration: BoxDecoration(
-      color: Colors.blue,
-      border: Border.all(width: 3, color: Colors.black),
-    ),
-  );
+            child: Text(' (24 h)'),
+          )
+        ],
+      ),
+      width: 2000,
+      height: 200,
+      margin: EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        color: Colors.grey,
+        
+      ),
+    );
+  }
 }
