@@ -5,6 +5,6 @@ class FavoritesScreen extends StatelessWidget {
   final String title = 'Favorites';
   @override
   Widget build(BuildContext context) {
-    return CurrencyListView();
+    return CurrencyListView(isFavoriteScreen: true);
   }
 }

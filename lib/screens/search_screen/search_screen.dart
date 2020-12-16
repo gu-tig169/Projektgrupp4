@@ -5,6 +5,6 @@ class SearchScreen extends StatelessWidget {
   final String title = 'Search';
   @override
   Widget build(BuildContext context) {
-    return Container(child: CurrencyListView());
+    return Container(child: CurrencyListView(isFavoriteScreen: false));
   }
 }
