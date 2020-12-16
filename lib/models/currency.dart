@@ -9,7 +9,9 @@ class Currency {
       @required this.lastUpdated,
       @required this.percentChange24hUsd,
       this.isFavorite = false,
+      this.hasUpperThreshold = false,
       this.upperThreshold,
+      this.hasLowerThreshold = false,
       this.lowerThreshold});
 
   String name;
@@ -20,7 +22,9 @@ class Currency {
   double percentChange24hUsd;
 
   bool isFavorite;
+  bool hasUpperThreshold;
   double upperThreshold;
+  bool hasLowerThreshold;
   double lowerThreshold;
 
   factory Currency.fromJson(Map<String, dynamic> json) {
