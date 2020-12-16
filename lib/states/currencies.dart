@@ -25,8 +25,30 @@ class Currencies extends ChangeNotifier {
     loading = true;
     notifyListeners();
     List<dynamic> json = await ShrimpyApi.getTickers();
-    list = List.generate(json.length, (index) => Currency.fromJson(Map.from(json[index])));
+    list = List.generate(
+        json.length, (index) => Currency.fromJson(Map.from(json[index])));
     loading = false;
+    notifyListeners();
+  }
+
+  void updateCurrency(
+      {String name,
+      @required String symbol,
+      double priceUsd,
+      double priceBtc,
+      String lastUpdated,
+      double percentChange24hUsd,
+      bool isFavorite = false,
+      bool hasUpperThreshold = false,
+      double upperThreshold,
+      bool hasLowerThreshold = false,
+      double lowerThreshold}) {
+    Currency target = list.where((e) => e.symbol == symbol).first;
+    target.isFavorite = isFavorite;
+    target.hasUpperThreshold = hasUpperThreshold;
+    target.upperThreshold = upperThreshold;
+    target.hasLowerThreshold = hasLowerThreshold;
+    target.lowerThreshold = lowerThreshold;
     notifyListeners();
   }
 
