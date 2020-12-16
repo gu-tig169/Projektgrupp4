@@ -24,7 +24,6 @@ class Currency {
   double lowerThreshold;
 
   factory Currency.fromJson(Map<String, dynamic> json) {
-    print(json['priceBtc']);
     return Currency(
         name: json['name'],
         symbol: json['symbol'],
