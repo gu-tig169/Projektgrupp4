@@ -46,6 +46,7 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: appBar(context, title: _title, actions: [
         IconButton(
             icon: Icon(Icons.refresh),
