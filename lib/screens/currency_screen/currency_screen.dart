@@ -36,16 +36,63 @@ class _CurrencyScreenState extends State<CurrencyScreen> {
     lowerController.text = widget.currency.lowerThreshold?.toString() ?? '';
   }
 
+  bool _saveCheck() {
+    if (_hasUpperThreshold && upperController.text != '') {
+      if (_hasLowerThreshold && lowerController.text == '') {
+        return false;
+      }
+      return true;
+    }
+    if (_hasLowerThreshold && lowerController.text != '') {
+      if (_hasUpperThreshold && upperController.text == '') {
+        return false;
+      }
+      return true;
+    }
+    return false;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar(context, widget.currency.name),
+      appBar: appBar(context, title: widget.currency.name, actions: [
+        Tooltip(
+          message: 'Please enter notification specifications to save',
+          child: TextButton(
+              onPressed: (_saveCheck())
+                  ? () {
+                      Provider.of<Currencies>(context, listen: false).updateCurrency(
+                        symbol: widget.currency.symbol,
+                        isFavorite: _isFavorite,
+                        hasUpperThreshold: _hasUpperThreshold,
+                        upperThreshold: (upperController.text != '')
+                            ? double.parse(upperController.text)
+                            : null,
+                        hasLowerThreshold: _hasLowerThreshold,
+                        lowerThreshold: (lowerController.text != '')
+                            ? double.parse(lowerController.text)
+                            : null,
+                      );
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) => AlertDialog(
+                                title: Text('Saved notification settings'),
+                                actions: [
+                                  TextButton(
+                                      onPressed: () => Navigator.pop(context),
+                                      child: Text('Got it'))
+                                ],
+                              ));
+                    }
+                  : null,
+              child: Text('Save')),
+        )
+      ]),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Container(
-            padding: EdgeInsets.only(
-                left: 24.0, right: 24.0, top: 12.0, bottom: 12.0),
+            padding: EdgeInsets.only(left: 24.0, right: 24.0, top: 12.0, bottom: 12.0),
             decoration: BoxDecoration(color: Theme.of(context).primaryColor),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,22 +100,22 @@ class _CurrencyScreenState extends State<CurrencyScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Price',
-                        style: TextStyle(color: Colors.white, fontSize: 14.0)),
-                    Text('Change (24h)',
-                        style: TextStyle(color: Colors.white, fontSize: 14.0))
+                    Text('Price', style: TextStyle(color: Colors.white, fontSize: 14.0)),
+                    Text('Change (24h)', style: TextStyle(color: Colors.white, fontSize: 14.0))
                   ],
                 ),
                 Row(
                   children: [
-                    Text('\$${widget.currency.priceUsd.toStringAsFixed(8)} USD',
-                        style: TextStyle(color: Colors.white, fontSize: 24.0)),
+                    Tooltip(
+                      message: '\$${widget.currency.priceUsd.toString()} USD',
+                      child: Text('\$${widget.currency.priceUsd.toStringAsFixed(3)} USD',
+                          style: TextStyle(color: Colors.white, fontSize: 24.0)),
+                    ),
                     Spacer(flex: 1),
                     percentageText(
                         widget.currency.percentChange24hUsd,
                         TextStyle(
-                            fontSize:
-                                Theme.of(context).textTheme.headline6.fontSize,
+                            fontSize: Theme.of(context).textTheme.headline6.fontSize,
                             fontWeight: FontWeight.bold))
                   ],
                 ),
@@ -87,10 +134,8 @@ class _CurrencyScreenState extends State<CurrencyScreen> {
                       setState(() {
                         _isFavorite = !_isFavorite;
                         if (!_isFavorite) {
-                          Provider.of<Currencies>(context, listen: false)
-                              .updateCurrency(
-                                  symbol: widget.currency.symbol,
-                                  isFavorite: _isFavorite);
+                          Provider.of<Currencies>(context, listen: false).updateCurrency(
+                              symbol: widget.currency.symbol, isFavorite: _isFavorite);
                         }
                       });
                     },
@@ -98,8 +143,7 @@ class _CurrencyScreenState extends State<CurrencyScreen> {
                     isSelectable: true),
                 Container(
                     padding: EdgeInsets.only(left: 6),
-                    child: Text('Notify me',
-                        style: Theme.of(context).textTheme.headline6))
+                    child: Text('Notify me', style: Theme.of(context).textTheme.headline6))
               ],
             ),
           ),
@@ -166,27 +210,6 @@ class _CurrencyScreenState extends State<CurrencyScreen> {
               Text('USD')
             ],
           ),
-          IconButton(
-            onPressed: ((_hasUpperThreshold && upperController.text != '') ||
-                    (_hasLowerThreshold && lowerController.text != ''))
-                ? () {
-                    Provider.of<Currencies>(context, listen: false)
-                        .updateCurrency(
-                      symbol: widget.currency.symbol,
-                      isFavorite: _isFavorite,
-                      hasUpperThreshold: _hasUpperThreshold,
-                      upperThreshold: (upperController.text != '')
-                          ? double.parse(upperController.text)
-                          : null,
-                      hasLowerThreshold: _hasLowerThreshold,
-                      lowerThreshold: (lowerController.text != '')
-                          ? double.parse(lowerController.text)
-                          : null,
-                    );
-                  }
-                : null,
-            icon: Icon(Icons.save),
-          )
         ],
       ),
     );
