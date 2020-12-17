@@ -1,25 +1,18 @@
 import 'package:Projektgrupp4/global_widgets/currency_card.dart';
-import 'package:Projektgrupp4/states/currencies.dart';
 import 'package:Projektgrupp4/models/currency.dart';
+import 'package:Projektgrupp4/states/currencies.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:loading_animations/loading_animations.dart';
 
 class CurrencyListView extends StatelessWidget {
- /* final Currency currency = new Currency(
-    name: 'TestCurrency',
-    symbol: 'TST',
-    priceUsd: 130000.0,
-    priceBtc: 1,
-    percentChange24hUsd: 5,
-    isFavorite: true,
-    lastUpdated: "igår asså",
-  );*/
+  final bool isFavoriteScreen;
+  CurrencyListView({this.isFavoriteScreen=false});
 
-  //final bool favoriteIsCalling = true;
 
   @override
   Widget build(BuildContext context) {
+    List<Currency> favorites= Provider.of<Currencies>(context, listen: false).list.where((e) => e.isFavorite).toList();
     return Column(
       children: [
         Expanded(
@@ -32,8 +25,8 @@ class CurrencyListView extends StatelessWidget {
             builder: (context, state, child) => (state.loading)
                 ? LoadingFlipping.circle()
                 : ListView.separated(
-                    itemCount: state.list?.length,
-                    itemBuilder: (context, index,) => CurrencyCard(state.list[index]),
+                    itemCount: (isFavoriteScreen)? favorites.length : state.list?.length,
+                    itemBuilder: (context, index,) => (isFavoriteScreen)? CurrencyCard(favorites[index]) : CurrencyCard(state.list[index]),
                     separatorBuilder: (context, index) => Divider(),
                   ),
           ),
