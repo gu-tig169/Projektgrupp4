@@ -1,7 +1,10 @@
+import 'package:Projektgrupp4/global_widgets/custom_app_bar.dart';
 import 'package:Projektgrupp4/screens/favorites_screen/favorites_screen.dart';
 import 'package:Projektgrupp4/screens/notification_screen/notification_screen.dart';
 import 'package:Projektgrupp4/screens/search_screen/search_screen.dart';
+import 'package:Projektgrupp4/states/currencies.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class MainScreen extends StatefulWidget {
   final NotificationScreen notificationScreen = NotificationScreen();
@@ -43,7 +46,11 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(_title)),
+      appBar: appBar(context, title: _title, actions: [
+        IconButton(
+            icon: Icon(Icons.refresh),
+            onPressed: () => Provider.of<Currencies>(context, listen: false).fetchMarketData())
+      ]),
       bottomNavigationBar: Material(
         color: Theme.of(context).primaryColor,
         child: TabBar(
