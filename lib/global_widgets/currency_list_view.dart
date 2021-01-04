@@ -17,22 +17,47 @@ class CurrencyListView extends StatefulWidget {
 class _CurrencyListViewState extends State<CurrencyListView> {
   List<Currency> _searchFilter(List<Currency> list) {
     return list
-        .where((e) => e.name.toLowerCase().contains(widget.searchController.text.toLowerCase()))
+        .where((e) =>
+            e.name
+                .toLowerCase()
+                .contains(widget.searchController.text.toLowerCase()) ||
+            e.symbol
+                .toLowerCase()
+                .contains(widget.searchController.text.toLowerCase()))
+        .toList();
+  }
+
+  List<Currency> _symbolSearchFilter(List<Currency> list) {
+    return list
+        .where((e) => e.symbol
+            .toLowerCase()
+            .contains(widget.searchController.text.toLowerCase()))
         .toList();
   }
 
   @override
   Widget build(BuildContext context) {
-    List<Currency> favorites =
-        Provider.of<Currencies>(context, listen: false).list.where((e) => e.isFavorite).toList();
+    List<Currency> favorites = Provider.of<Currencies>(context, listen: false)
+        .list
+        .where((e) => e.isFavorite)
+        .toList();
     return Column(
       children: [
-        TextField(
-          controller: widget.searchController,
-          decoration: InputDecoration(hintText: 'Search...'),
-          onChanged: (value) {
-            setState(() {});
-          },
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          child: TextField(
+            controller: widget.searchController,
+            decoration: InputDecoration(
+              hintText: 'Search...',
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(width: 2.0),
+              ),
+              enabledBorder: OutlineInputBorder(),
+            ),
+            onChanged: (value) {
+              setState(() {});
+            },
+          ),
         ),
         Expanded(
           flex: 1,
