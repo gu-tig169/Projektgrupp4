@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "796281471677",
+    "firebase_url": "https://crypto-296-default-rtdb.firebaseio.com",
+    "project_id": "crypto-296",
+    "storage_bucket": "crypto-296.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:796281471677:android:8ba1be5ac1995a4f59edd4",
+        "android_client_info": {
+          "package_name": "com.example.Projektgrupp4"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "796281471677-bier7rqdo0eq5ea5s76vfq8majvrps58.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAP-5hCcD4Ud6ayzrAHifgT3jFkZt7T-uQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "796281471677-bier7rqdo0eq5ea5s76vfq8majvrps58.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:796281471677:android:694013b407087f2759edd4",
+        "android_client_info": {
+          "package_name": "com.example.firebase_with_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "796281471677-bier7rqdo0eq5ea5s76vfq8majvrps58.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAP-5hCcD4Ud6ayzrAHifgT3jFkZt7T-uQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "796281471677-bier7rqdo0eq5ea5s76vfq8majvrps58.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
