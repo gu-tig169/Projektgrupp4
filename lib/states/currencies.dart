@@ -4,22 +4,23 @@ import 'package:flutter/widgets.dart';
 
 class Currencies extends ChangeNotifier {
   Currencies() {
-    _list = List.generate(
-        5,
-        (index) => Currency(
-              name: 'TestCurrency-$index',
-              symbol: 'TST$index',
-              priceUsd: 130000.0,
-              priceBtc: 1,
-              percentChange24hUsd: 5,
-              isFavorite: true,
-              hasUpperThreshold: true,
-              upperThreshold: 99999,
-              hasLowerThreshold: true,
-              lowerThreshold: 9999,
-              lastUpdated: "igår asså",
-            ));
-    // fetchMarketData();
+    fetchMarketData();
+    if (list == null)
+      list = List.generate(
+          5,
+          (index) => Currency(
+                name: 'TestCurrency-$index',
+                symbol: 'TST$index',
+                priceUsd: 130000.0,
+                priceBtc: 1,
+                percentChange24hUsd: 5,
+                isFavorite: true,
+                hasUpperThreshold: true,
+                upperThreshold: 99999,
+                hasLowerThreshold: true,
+                lowerThreshold: 9999,
+                lastUpdated: "igår asså",
+              ));
   }
 
   List<Currency> _list = List<Currency>();

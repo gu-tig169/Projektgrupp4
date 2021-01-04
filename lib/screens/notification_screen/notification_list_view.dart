@@ -6,9 +6,9 @@ import 'package:provider/provider.dart';
 
 class NotificationListView extends StatelessWidget {
   bool checkThreshold(Currency currency) {
-    if (currency.priceUsd > currency.upperThreshold) {
+    if (currency.upperThreshold != null && currency.priceUsd > currency.upperThreshold) {
       return true;
-    } else if (currency.priceUsd < currency.lowerThreshold) {
+    } else if (currency.lowerThreshold != null && currency.priceUsd < currency.lowerThreshold) {
       return false;
     } else {
       return null;
@@ -17,16 +17,13 @@ class NotificationListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Currency> favorites = Provider.of<Currencies>(context, listen: false)
-        .list
-        .where((e) => e.isFavorite)
-        .toList()
-        .where((e) => checkThreshold(e) != null)
-        .toList();
+    List<Currency> favorites =
+        Provider.of<Currencies>(context, listen: false).list.where((e) => e.isFavorite).toList();
+    if (favorites.length <= 0) print('No favorites');
+    List<Currency> list = favorites.where((e) => checkThreshold(e) != null).toList();
     return ListView.separated(
-      itemCount: favorites.length,
-      itemBuilder: (context, index) =>
-          NotificationCard(favorites[index], checkThreshold(favorites[index])),
+      itemCount: list.length,
+      itemBuilder: (context, index) => NotificationCard(list[index], checkThreshold(list[index])),
       separatorBuilder: (context, index) => Divider(),
     );
   }
