@@ -36,4 +36,15 @@ class Currency {
         percentChange24hUsd: double.parse(json['percentChange24hUsd']),
         lastUpdated: json['lastUpdated']);
   }
+
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
+      'symbol': symbol,
+      'isFavorite': isFavorite,
+      'hasUpperThreshold': hasUpperThreshold,
+      'upperThreshold': upperThreshold,
+      'hasLowerThreshold': hasLowerThreshold,
+      'lowerThreshold': lowerThreshold,
+    };
+  }
 }

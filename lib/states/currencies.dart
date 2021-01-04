@@ -1,4 +1,5 @@
 import 'package:Projektgrupp4/models/currency.dart';
+import 'package:Projektgrupp4/utils/save_api.dart';
 import 'package:Projektgrupp4/utils/shrimpy_api.dart';
 import 'package:flutter/widgets.dart';
 
@@ -30,9 +31,15 @@ class Currencies extends ChangeNotifier {
     loading = true;
     notifyListeners();
     List<dynamic> json = await ShrimpyApi.getTickers();
-    list = List.generate(json.length, (index) => Currency.fromJson(Map.from(json[index])));
+    list = List.generate(
+        json.length, (index) => Currency.fromJson(Map.from(json[index])));
     loading = false;
     notifyListeners();
+  }
+
+  void saveFavorites() {
+    List<Currency> favorites = list.where((e) => e.isFavorite).toList();
+    SaveApi.saveCurrencies(favorites);
   }
 
   void updateCurrency(
