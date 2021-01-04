@@ -119,7 +119,7 @@ class _CurrencyScreenState extends State<CurrencyScreen> {
                             fontWeight: FontWeight.bold))
                   ],
                 ),
-                Text('Updated: ${widget.currency.lastUpdated}',
+                Text('Updated: ${widget.currency.lastUpdated.replaceAll(new RegExp(r'.000Z'), '').replaceAll(new RegExp(r'[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]'), 'today',).replaceAll(new RegExp(r'T'), ' at ',)} GMT',
                     style: TextStyle(color: Colors.white, fontSize: 12))
               ],
             ),
@@ -170,17 +170,20 @@ class _CurrencyScreenState extends State<CurrencyScreen> {
                   }),
               Text('When currency exceeds: \$'),
               Expanded(
-                  child: TextField(
+                  child: Container(
+                    height: 26,
+                    child: TextField(
                 controller: upperController,
                 enabled: _hasUpperThreshold,
                 onChanged: (value) {
-                  setState(() {});
+                    setState(() {});
                 },
                 keyboardType: TextInputType.number,
                 inputFormatters: [
-                  FilteringTextInputFormatter.allow(RegExp(r'[0-9.]')),
+                    FilteringTextInputFormatter.allow(RegExp(r'[0-9.]')),
                 ],
-              )),
+              ),
+                  )),
               Text('USD')
             ],
           ),
@@ -196,17 +199,20 @@ class _CurrencyScreenState extends State<CurrencyScreen> {
                   }),
               Text('When currency drops below: \$'),
               Expanded(
-                  child: TextField(
+                  child: Container(
+                    height: 26,
+                    child: TextField(
                 controller: lowerController,
                 enabled: _hasLowerThreshold,
                 onChanged: (value) {
-                  setState(() {});
+                    setState(() {});
                 },
                 keyboardType: TextInputType.number,
                 inputFormatters: [
-                  FilteringTextInputFormatter.allow(RegExp(r'[0-9.]')),
+                    FilteringTextInputFormatter.allow(RegExp(r'[0-9.]')),
                 ],
-              )),
+              ),
+                  )),
               Text('USD')
             ],
           ),

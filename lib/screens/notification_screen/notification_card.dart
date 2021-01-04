@@ -1,6 +1,5 @@
 import 'package:Projektgrupp4/models/currency.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class NotificationCard extends StatelessWidget {
   final Currency currency;
