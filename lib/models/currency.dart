@@ -28,12 +28,13 @@ class Currency {
   double lowerThreshold;
 
   factory Currency.fromJson(Map<String, dynamic> json) {
+    print(json['percentChange24hUsd']);
     return Currency(
         name: json['name'],
         symbol: json['symbol'],
-        priceUsd: double.parse(json['priceUsd']),
-        priceBtc: double.parse(json['priceBtc']),
-        percentChange24hUsd: double.parse(json['percentChange24hUsd']),
+        priceUsd: double.parse(json['priceUsd'] ?? 'NaN'),
+        priceBtc: double.parse(json['priceBtc'] ?? 'NaN'),
+        percentChange24hUsd: double.parse(json['percentChange24hUsd'] ?? 'NaN'),
         lastUpdated: json['lastUpdated']);
   }
 
