@@ -27,6 +27,7 @@ class _CurrencyListViewState extends State<CurrencyListView> {
         .toList();
   }
 
+
   @override
   Widget build(BuildContext context) {
     List<Currency> favorites = Provider.of<Currencies>(context, listen: false)

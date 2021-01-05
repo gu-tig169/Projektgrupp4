@@ -18,9 +18,7 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
         body: Center(
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 0.0),
-            child: Column(
+          child: Column(
               children: [
                 _customButton(context, 'Favorites', _favorites, 2),
                 _customButton(context, 'Search', _search, 1),
@@ -28,39 +26,44 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
           ),
-        ));
+        );
   }
 
   Widget _customButton(context, String title, Widget icon, int tabIndex) {
-    return InkWell(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => MainScreen(tabIndex),
-          ),
-        );
-      },
+    return Expanded(
       child: Padding(
-          padding: EdgeInsets.only(top: 70),
-          child: Container(
-            padding: EdgeInsets.only(top: 30, bottom: 30),
-            alignment: FractionalOffset.center,
-            color: Theme.of(context).primaryColor,
-            child: Row(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(left: 30, right: 30.0),
-                  child: icon,
+        padding: const EdgeInsets.only(top: 40, bottom: 40 ),
+        child: InkWell(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => MainScreen(tabIndex),
+              ),
+            );
+          },
+          //child: Padding(
+              //padding: EdgeInsets.only(top: 70),
+              child: Container(
+                padding: EdgeInsets.only(top: 30, bottom: 30),
+                alignment: FractionalOffset.center,
+                color: Theme.of(context).primaryColor,
+                child: Row(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(left: 30, right: 30.0),
+                      child: icon,
+                    ),
+                    Container(
+                      padding: const EdgeInsets.all(8),
+                      child: Text(title,
+                          style: TextStyle(fontSize: 25, color: Colors.white)),
+                    ),
+                  ],
                 ),
-                Container(
-                  padding: const EdgeInsets.all(8),
-                  child: Text(title,
-                      style: TextStyle(fontSize: 25, color: Colors.white)),
-                ),
-              ],
-            ),
-          )),
+              ),
+        ),
+      ),
     );
   }
 }
