@@ -27,13 +27,6 @@ class _CurrencyListViewState extends State<CurrencyListView> {
         .toList();
   }
 
-  List<Currency> _symbolSearchFilter(List<Currency> list) {
-    return list
-        .where((e) => e.symbol
-            .toLowerCase()
-            .contains(widget.searchController.text.toLowerCase()))
-        .toList();
-  }
 
   @override
   Widget build(BuildContext context) {

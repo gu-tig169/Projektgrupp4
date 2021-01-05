@@ -1,5 +1,6 @@
 import 'package:Projektgrupp4/models/currency.dart';
 import 'package:Projektgrupp4/utils/firebase_api.dart';
+import 'package:Projektgrupp4/utils/save_api.dart';
 import 'package:Projektgrupp4/utils/shrimpy_api.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/widgets.dart';
@@ -52,12 +53,18 @@ class Currencies extends ChangeNotifier {
       }
     }
     // list = List.generate(json.length, (index) => Currency.fromJson(Map.from(json[index])));
+    list = List.generate(
+        json.length, (index) => Currency.fromJson(Map.from(json[index])));
     loading = false;
 
     notifyListeners();
   }
 
   void fetchFavorites() {}
+  void saveFavorites() {
+    List<Currency> favorites = list.where((e) => e.isFavorite).toList();
+    SaveApi.saveCurrencies(favorites);
+  }
 
   void updateCurrency(
       {String name,
