@@ -5,14 +5,15 @@ import 'package:firebase_database/firebase_database.dart';
 
 class FirebaseApi {
   static final databaseReference = FirebaseDatabase.instance.reference();
-  static final String key = 'test-key';
+  static final String key = 'fisk';
 
   static void saveFavorites(List<Currency> favorites) {
     for (Currency e in favorites) {
-      databaseReference
-          .child(key)
-          .child(e.symbol)
-          .set({'upperThreshold': e.upperThreshold, 'lowerThreshold': e.lowerThreshold});
+      databaseReference.child(key).child(e.symbol).set({
+        'isFavorite': e.isFavorite,
+        if (e.hasUpperThreshold) 'upperThreshold': e.upperThreshold,
+        if (e.hasLowerThreshold) 'lowerThreshold': e.lowerThreshold,
+      });
     }
   }
 

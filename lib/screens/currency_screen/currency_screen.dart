@@ -37,13 +37,13 @@ class _CurrencyScreenState extends State<CurrencyScreen> {
   }
 
   bool _saveCheck() {
-    if (_hasUpperThreshold && upperController.text != '') {
+    if (_isFavorite || _hasUpperThreshold && upperController.text != '') {
       if (_hasLowerThreshold && lowerController.text == '') {
         return false;
       }
       return true;
     }
-    if (_hasLowerThreshold && lowerController.text != '') {
+    if (_isFavorite || _hasLowerThreshold && lowerController.text != '') {
       if (_hasUpperThreshold && upperController.text == '') {
         return false;
       }

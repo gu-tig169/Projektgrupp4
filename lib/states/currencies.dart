@@ -53,8 +53,6 @@ class Currencies extends ChangeNotifier {
       }
     }
     // list = List.generate(json.length, (index) => Currency.fromJson(Map.from(json[index])));
-    list = List.generate(
-        json.length, (index) => Currency.fromJson(Map.from(json[index])));
     loading = false;
 
     notifyListeners();
