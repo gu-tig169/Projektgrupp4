@@ -1,4 +1,3 @@
-import 'package:Projektgrupp4/models/currency.dart';
 import 'package:flutter/material.dart';
 
 class FavoriteCheckBox extends StatelessWidget {

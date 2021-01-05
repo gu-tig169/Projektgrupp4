@@ -4,7 +4,6 @@ import 'package:Projektgrupp4/screens/currency_screen/currency_screen.dart';
 import 'package:Projektgrupp4/global_widgets/favorite_check_box.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class CurrencyCard extends StatefulWidget {
   final Currency currency;
@@ -22,9 +21,7 @@ class _CurrencyCardState extends State<CurrencyCard> {
     return InkWell(
       onTap: () {
         Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => CurrencyScreen(widget.currency)));
+            context, MaterialPageRoute(builder: (context) => CurrencyScreen(widget.currency)));
       },
       child: Container(
         padding: EdgeInsets.only(left: 24, right: 12, top: 12),
@@ -45,13 +42,11 @@ class _CurrencyCardState extends State<CurrencyCard> {
                     child: percentageText(
                         widget.currency.percentChange24hUsd,
                         TextStyle(
-                          fontSize:
-                              Theme.of(context).textTheme.headline6.fontSize,
+                          fontSize: Theme.of(context).textTheme.headline6.fontSize,
                         )))),
             Expanded(
               flex: 1,
-              child: FavoriteCheckBox(
-                  isSelected: widget.currency.isFavorite, isSelectable: false),
+              child: FavoriteCheckBox(isSelected: widget.currency.isFavorite, isSelectable: false),
             )
           ],
         ),

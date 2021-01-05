@@ -10,7 +10,6 @@ Widget percentageText(double percentage, TextStyle style) {
     _color = Colors.green;
   }
 
-  // (percentage.toString() == 'NaN') ? (percentage < 0) ? Colors.red : Colors.green
   TextStyle textStyle =
       TextStyle(color: _color, fontWeight: style.fontWeight, fontSize: style.fontSize);
 

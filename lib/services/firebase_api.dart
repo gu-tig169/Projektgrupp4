@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:Projektgrupp4/models/currency.dart';
 import 'package:firebase_database/firebase_database.dart';
 

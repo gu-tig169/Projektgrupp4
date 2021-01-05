@@ -119,14 +119,7 @@ class _CurrencyScreenState extends State<CurrencyScreen> {
                             fontWeight: FontWeight.bold))
                   ],
                 ),
-                Text(
-                    'Updated: ${widget.currency.lastUpdated.replaceAll(new RegExp(r'.000Z'), '').replaceAll(
-                          new RegExp(r'[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]'),
-                          'today',
-                        ).replaceAll(
-                          new RegExp(r'T'),
-                          ' at ',
-                        )} GMT',
+                Text('Updated: ' + widget.currency.lastUpdatedGMTString(),
                     style: TextStyle(color: Colors.white, fontSize: 12))
               ],
             ),
