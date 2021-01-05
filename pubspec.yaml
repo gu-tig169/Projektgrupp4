@@ -13,6 +13,8 @@ dependencies:
   provider: ^4.3.2+3
   http: ^0.12.2
   loading_animations: "^2.1.0"
+  firebase_core: "^0.5.3" 
+  firebase_database: "^4.4.0" 
 
   cupertino_icons: ^1.0.0
 
