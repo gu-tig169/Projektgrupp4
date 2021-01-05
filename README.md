@@ -10,15 +10,21 @@ _Track your favorite cryptocurrencies with style._
 
 #### 1.1.1 Global widgets
 
+Widgets meant to be used by more than one specific screen or class.
+
 #### 1.1.2 Screens
+
+The full or semi-full screen widgets used by either the Navigator or the TabView.
 
 ### 1.2 Model & States
 
 * **Currency**
 
+A model representing a cryptocurrency.
+
 ```dart
-Currency(
-      {@required this.name,
+Currency({
+      @required this.name,
       @required this.symbol,
       @required this.priceUsd,
       @required this.priceBtc,
@@ -33,12 +39,14 @@ Currency(
 
 * **Currencies**
 
+A state provider that keeps track of current currencies and methods associated with them.
+
 ### 1.3 API / Cloud storage
 
 * **Shrimpy**
   * API to get current cryptocurrency market data.
 * **Firebase**
-  * Cloud storage for user (key) specific favorites annd thresholds.
+  * Cloud storage for user (key) specific favorites and thresholds.
 * **SaveApi**
   * Generic function to integrate with API (json)
 

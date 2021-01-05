@@ -1,3 +1,4 @@
+import 'package:Projektgrupp4/global_widgets/no_favorites_text.dart';
 import 'package:Projektgrupp4/models/currency.dart';
 import 'package:Projektgrupp4/screens/notification_screen/notification_card.dart';
 import 'package:Projektgrupp4/states/currencies.dart';
@@ -21,10 +22,13 @@ class NotificationListView extends StatelessWidget {
         Provider.of<Currencies>(context, listen: false).list.where((e) => e.isFavorite).toList();
     if (favorites.length <= 0) print('No favorites');
     List<Currency> list = favorites.where((e) => checkThreshold(e) != null).toList();
-    return ListView.separated(
-      itemCount: list.length,
-      itemBuilder: (context, index) => NotificationCard(list[index], checkThreshold(list[index])),
-      separatorBuilder: (context, index) => Divider(),
-    );
+    return (favorites.length <= 0)
+        ? NoFavoritesText()
+        : ListView.separated(
+            itemCount: list.length,
+            itemBuilder: (context, index) =>
+                NotificationCard(list[index], checkThreshold(list[index])),
+            separatorBuilder: (context, index) => Divider(),
+          );
   }
 }

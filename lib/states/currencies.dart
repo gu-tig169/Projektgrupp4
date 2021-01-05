@@ -1,29 +1,43 @@
 import 'package:Projektgrupp4/models/currency.dart';
-import 'package:Projektgrupp4/utils/firebase_api.dart';
-import 'package:Projektgrupp4/utils/save_api.dart';
-import 'package:Projektgrupp4/utils/shrimpy_api.dart';
-import 'package:firebase_database/firebase_database.dart';
+import 'package:Projektgrupp4/services/firebase_api.dart';
+import 'package:Projektgrupp4/services/save_api.dart';
+import 'package:Projektgrupp4/services/shrimpy_api.dart';
 import 'package:flutter/widgets.dart';
 
 class Currencies extends ChangeNotifier {
   Currencies() {
     fetchMarketData();
-    if (list == null)
-      list = List.generate(
-          5,
-          (index) => Currency(
-                name: 'TestCurrency-$index',
-                symbol: 'TST$index',
-                priceUsd: 130000.0,
-                priceBtc: 1,
-                percentChange24hUsd: 5,
-                isFavorite: true,
-                hasUpperThreshold: true,
-                upperThreshold: 99999,
-                hasLowerThreshold: true,
-                lowerThreshold: 9999,
-                lastUpdated: "igår asså",
-              ));
+    if (list = null)
+      list = [
+        Currency(
+            name: 'Networking problem',
+            symbol: '',
+            priceUsd: double.parse('NaN'),
+            priceBtc: double.parse('NaN'),
+            percentChange24hUsd: double.parse('NaN'),
+            isFavorite: false,
+            hasUpperThreshold: false,
+            hasLowerThreshold: false,
+            lastUpdated: "never")
+      ];
+
+    // Test currencies
+    // if (list == null)
+    // list = List.generate(
+    //     5,
+    //     (index) => Currency(
+    //           name: 'TestCurrency-$index',
+    //           symbol: 'TST$index',
+    //           priceUsd: 130000.0,
+    //           priceBtc: 1,
+    //           percentChange24hUsd: 5,
+    //           isFavorite: true,
+    //           hasUpperThreshold: true,
+    //           upperThreshold: 99999,
+    //           hasLowerThreshold: true,
+    //           lowerThreshold: 9999,
+    //           lastUpdated: "igår asså",
+    //           ));
   }
 
   List<Currency> _list = List<Currency>();
@@ -32,8 +46,8 @@ class Currencies extends ChangeNotifier {
   void fetchMarketData() async {
     loading = true;
     notifyListeners();
-    List<dynamic> json = await ShrimpyApi.getTickers();
 
+    List<dynamic> json = await ShrimpyApi.getTickers();
     Map<dynamic, dynamic> favorites = await FirebaseApi.getFavorites();
 
     for (int i = 0; i < json.length; i++) {
@@ -52,13 +66,12 @@ class Currencies extends ChangeNotifier {
         }
       }
     }
-    // list = List.generate(json.length, (index) => Currency.fromJson(Map.from(json[index])));
     loading = false;
 
     notifyListeners();
   }
 
-  void fetchFavorites() {}
+  // Generalized save method for SaveApi
   void saveFavorites() {
     List<Currency> favorites = list.where((e) => e.isFavorite).toList();
     SaveApi.saveCurrencies(favorites);
@@ -87,6 +100,7 @@ class Currencies extends ChangeNotifier {
     target.upperThreshold = upperThreshold;
     target.hasLowerThreshold = hasLowerThreshold;
     target.lowerThreshold = lowerThreshold;
+
     FirebaseApi.saveFavorites(list.where((e) => e.isFavorite).toList());
 
     notifyListeners();

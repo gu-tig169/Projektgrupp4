@@ -47,4 +47,17 @@ class Currency {
       'lowerThreshold': lowerThreshold,
     };
   }
+
+  String lastUpdatedGMTString() =>
+      lastUpdated
+          .replaceAll(new RegExp(r'.000Z'), '')
+          .replaceAll(
+            new RegExp(r'T'),
+            ' at ',
+          )
+          .replaceAll(
+            new RegExp(r'[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]'),
+            'Today',
+          ) +
+      'GMT';
 }

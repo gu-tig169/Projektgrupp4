@@ -1,4 +1,5 @@
 import 'package:Projektgrupp4/global_widgets/currency_card.dart';
+import 'package:Projektgrupp4/global_widgets/no_favorites_text.dart';
 import 'package:Projektgrupp4/models/currency.dart';
 import 'package:Projektgrupp4/states/currencies.dart';
 import 'package:flutter/material.dart';
@@ -18,22 +19,15 @@ class _CurrencyListViewState extends State<CurrencyListView> {
   List<Currency> _searchFilter(List<Currency> list) {
     return list
         .where((e) =>
-            e.name
-                .toLowerCase()
-                .contains(widget.searchController.text.toLowerCase()) ||
-            e.symbol
-                .toLowerCase()
-                .contains(widget.searchController.text.toLowerCase()))
+            e.name.toLowerCase().contains(widget.searchController.text.toLowerCase()) ||
+            e.symbol.toLowerCase().contains(widget.searchController.text.toLowerCase()))
         .toList();
   }
 
-
   @override
   Widget build(BuildContext context) {
-    List<Currency> favorites = Provider.of<Currencies>(context, listen: false)
-        .list
-        .where((e) => e.isFavorite)
-        .toList();
+    List<Currency> favorites =
+        Provider.of<Currencies>(context, listen: false).list.where((e) => e.isFavorite).toList();
     return Column(
       children: [
         Padding(
@@ -61,19 +55,21 @@ class _CurrencyListViewState extends State<CurrencyListView> {
           child: Consumer<Currencies>(
             builder: (context, state, child) => (state.loading)
                 ? LoadingFlipping.circle()
-                : ListView.separated(
-                    itemCount: (widget.isFavoriteScreen)
-                        ? _searchFilter(favorites).length
-                        : _searchFilter(state.list).length,
-                    itemBuilder: (
-                      context,
-                      index,
-                    ) =>
-                        (widget.isFavoriteScreen)
-                            ? CurrencyCard(_searchFilter(favorites)[index])
-                            : CurrencyCard(_searchFilter(state.list)[index]),
-                    separatorBuilder: (context, index) => Divider(),
-                  ),
+                : (widget.isFavoriteScreen && favorites.length <= 0)
+                    ? NoFavoritesText()
+                    : ListView.separated(
+                        itemCount: (widget.isFavoriteScreen)
+                            ? _searchFilter(favorites).length
+                            : _searchFilter(state.list).length,
+                        itemBuilder: (
+                          context,
+                          index,
+                        ) =>
+                            (widget.isFavoriteScreen)
+                                ? CurrencyCard(_searchFilter(favorites)[index])
+                                : CurrencyCard(_searchFilter(state.list)[index]),
+                        separatorBuilder: (context, index) => Divider(),
+                      ),
           ),
         ),
       ],
