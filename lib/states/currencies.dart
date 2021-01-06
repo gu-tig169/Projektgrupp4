@@ -7,7 +7,7 @@ import 'package:flutter/widgets.dart';
 class Currencies extends ChangeNotifier {
   Currencies() {
     fetchMarketData();
-    if (list = null)
+    if (list == null)
       list = [
         Currency(
             name: 'Networking problem',
@@ -17,7 +17,9 @@ class Currencies extends ChangeNotifier {
             percentChange24hUsd: double.parse('NaN'),
             isFavorite: false,
             hasUpperThreshold: false,
+            upperThreshold: double.parse('NaN'),
             hasLowerThreshold: false,
+            lowerThreshold: double.parse('NaN'),
             lastUpdated: "never")
       ];
 
