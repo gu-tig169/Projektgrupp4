@@ -19,8 +19,12 @@ class _CurrencyListViewState extends State<CurrencyListView> {
   List<Currency> _searchFilter(List<Currency> list) {
     return list
         .where((e) =>
-            e.name.toLowerCase().contains(widget.searchController.text.toLowerCase()) ||
-            e.symbol.toLowerCase().contains(widget.searchController.text.toLowerCase()))
+            e.name
+                .toLowerCase()
+                .contains(widget.searchController.text.toLowerCase()) ||
+            e.symbol
+                .toLowerCase()
+                .contains(widget.searchController.text.toLowerCase()))
         .toList();
   }
 
@@ -48,6 +52,7 @@ class _CurrencyListViewState extends State<CurrencyListView> {
           flex: 1,
           child: titleBar(context),
         ),
+        Divider(thickness: 2, height: 1),
         Expanded(
           flex: 11,
           child: Consumer<Currencies>(builder: (context, state, child) {
@@ -67,7 +72,8 @@ class _CurrencyListViewState extends State<CurrencyListView> {
                         ) =>
                             (widget.isFavoriteScreen)
                                 ? CurrencyCard(_searchFilter(favorites)[index])
-                                : CurrencyCard(_searchFilter(state.list)[index]),
+                                : CurrencyCard(
+                                    _searchFilter(state.list)[index]),
                         separatorBuilder: (context, index) => Divider(),
                       );
           }),
@@ -84,10 +90,10 @@ class _CurrencyListViewState extends State<CurrencyListView> {
           Expanded(
               flex: 3,
               child: Padding(
-                padding: const EdgeInsets.only(left: 15),
+                padding: const EdgeInsets.only(left: 12),
                 child: Text(
                   'Name',
-                  style: Theme.of(context).textTheme.headline6,
+                  style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
                   overflow: TextOverflow.ellipsis,
                 ),
               )),
@@ -97,22 +103,24 @@ class _CurrencyListViewState extends State<CurrencyListView> {
                 alignment: Alignment.centerRight,
                 child: Text(
                   'Change',
-                  style: Theme.of(context).textTheme.headline6,
+                  style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
                   overflow: TextOverflow.ellipsis,
                 ),
               )),
           Expanded(
             flex: 1,
-            child: Text(' (24 h)'),
+            child: Text(
+              ' (24 h)',
+            ),
           )
         ],
       ),
-      width: 2000,
       height: 200,
       margin: EdgeInsets.all(10),
       decoration: BoxDecoration(
-        color: Colors.grey,
-      ),
+          // border: Border(bottom: BorderSide(width: 2.0, color: Colors.black))
+          // color: Theme.of(context).primaryColor,
+          ),
     );
   }
 }
