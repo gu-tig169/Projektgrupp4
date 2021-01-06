@@ -11,12 +11,13 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   centerTitle: true,
-      //   title: Text(
-      //     'Crypto 296',
-      //   ),
-      // ),
+      appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: Theme.of(context).primaryColor,
+        title: Text(
+          'Crypto 296',
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.only(top: 70.0),
         child: Center(

@@ -26,7 +26,9 @@ class _CurrencyCardState extends State<CurrencyCard> {
         child: InkWell(
           onTap: () {
             Navigator.push(
-                context, MaterialPageRoute(builder: (context) => CurrencyScreen(widget.currency)));
+                context,
+                MaterialPageRoute(
+                    builder: (context) => CurrencyScreen(widget.currency)));
           },
           child: Container(
             padding: EdgeInsets.only(left: 24, right: 12, top: 12),
@@ -47,7 +49,10 @@ class _CurrencyCardState extends State<CurrencyCard> {
                         child: percentageText(
                             widget.currency.percentChange24hUsd,
                             TextStyle(
-                              fontSize: Theme.of(context).textTheme.headline6.fontSize,
+                              fontSize: Theme.of(context)
+                                  .textTheme
+                                  .headline6
+                                  .fontSize,
                             )))),
               ],
             ),
@@ -64,7 +69,8 @@ class _CurrencyCardState extends State<CurrencyCard> {
               widget.currency.isFavorite = !widget.currency.isFavorite;
               if (!widget.currency.isFavorite) {
                 Provider.of<Currencies>(context, listen: false).updateCurrency(
-                    symbol: widget.currency.symbol, isFavorite: widget.currency.isFavorite);
+                    symbol: widget.currency.symbol,
+                    isFavorite: widget.currency.isFavorite);
               }
             });
           },

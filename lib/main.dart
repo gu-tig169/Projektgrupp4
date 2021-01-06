@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(ChangeNotifierProvider(create: (context) => Currencies(), child: MyApp()));
+  runApp(ChangeNotifierProvider(
+      create: (context) => Currencies(), child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
