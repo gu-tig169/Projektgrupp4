@@ -3,7 +3,7 @@ import 'package:firebase_database/firebase_database.dart';
 
 class FirebaseApi {
   static final databaseReference = FirebaseDatabase.instance.reference();
-  static final String key = 'fisk';
+  static final String key = 'Gås';
 
   static void saveFavorites(List<Currency> favorites) {
     for (Currency e in favorites) {
