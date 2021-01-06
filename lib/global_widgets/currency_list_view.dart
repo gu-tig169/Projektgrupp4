@@ -26,8 +26,6 @@ class _CurrencyListViewState extends State<CurrencyListView> {
 
   @override
   Widget build(BuildContext context) {
-    List<Currency> favorites =
-        Provider.of<Currencies>(context, listen: false).list.where((e) => e.isFavorite).toList();
     return Column(
       children: [
         Padding(
@@ -52,11 +50,13 @@ class _CurrencyListViewState extends State<CurrencyListView> {
         ),
         Expanded(
           flex: 11,
-          child: Consumer<Currencies>(
-            builder: (context, state, child) => (state.loading)
+          child: Consumer<Currencies>(builder: (context, state, child) {
+            List<Currency> favorites = state.favorites;
+            return (state.loading)
                 ? LoadingFlipping.circle()
                 : (widget.isFavoriteScreen && favorites.length <= 0)
-                    ? NoFavoritesText()
+                    ? NoFavoritesText(
+                        'You have no favorites yet.\nAdd some with thresholds and watch your money grow!')
                     : ListView.separated(
                         itemCount: (widget.isFavoriteScreen)
                             ? _searchFilter(favorites).length
@@ -69,8 +69,8 @@ class _CurrencyListViewState extends State<CurrencyListView> {
                                 ? CurrencyCard(_searchFilter(favorites)[index])
                                 : CurrencyCard(_searchFilter(state.list)[index]),
                         separatorBuilder: (context, index) => Divider(),
-                      ),
-          ),
+                      );
+          }),
         ),
       ],
     );

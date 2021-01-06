@@ -75,7 +75,6 @@ class Currencies extends ChangeNotifier {
 
   // Generalized save method for SaveApi
   void saveFavorites() {
-    List<Currency> favorites = list.where((e) => e.isFavorite).toList();
     SaveApi.saveCurrencies(favorites);
   }
 
@@ -103,7 +102,7 @@ class Currencies extends ChangeNotifier {
     target.hasLowerThreshold = hasLowerThreshold;
     target.lowerThreshold = lowerThreshold;
 
-    FirebaseApi.saveFavorites(list.where((e) => e.isFavorite).toList());
+    FirebaseApi.saveFavorites(favorites);
 
     notifyListeners();
   }
@@ -113,4 +112,6 @@ class Currencies extends ChangeNotifier {
     _list = value;
     notifyListeners();
   }
+
+  List<Currency> get favorites => list.where((e) => e.isFavorite).toList();
 }
