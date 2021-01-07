@@ -1,8 +1,9 @@
-import 'package:Projektgrupp4/global_widgets/custom_app_bar.dart';
-import 'package:Projektgrupp4/global_widgets/favorite_check_box.dart';
-import 'package:Projektgrupp4/global_widgets/percentage_text.dart';
 import 'package:Projektgrupp4/models/currency.dart';
-import 'package:Projektgrupp4/states/currencies.dart';
+import 'package:Projektgrupp4/ui/global_widgets/custom_app_bar.dart';
+import 'package:Projektgrupp4/ui/global_widgets/favorite_check_box.dart';
+import 'package:Projektgrupp4/ui/global_widgets/percentage_text.dart';
+import 'package:Projektgrupp4/ui/states/currencies.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';

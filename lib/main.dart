@@ -1,11 +1,11 @@
-import 'package:Projektgrupp4/screens/home_screen/home_screen.dart';
-import 'package:Projektgrupp4/states/currencies.dart';
+import 'package:Projektgrupp4/ui/screens/home_screen/home_screen.dart';
+import 'package:Projektgrupp4/ui/states/currencies.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(ChangeNotifierProvider(
-      create: (context) => Currencies(), child: MyApp()));
+  runApp(ChangeNotifierProvider(create: (context) => Currencies(), child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {

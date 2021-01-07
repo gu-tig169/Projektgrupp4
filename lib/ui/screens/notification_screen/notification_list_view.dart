@@ -1,10 +1,11 @@
-import 'package:Projektgrupp4/global_widgets/no_favorites_text.dart';
 import 'package:Projektgrupp4/models/currency.dart';
-import 'package:Projektgrupp4/screens/notification_screen/notification_card.dart';
-import 'package:Projektgrupp4/states/currencies.dart';
+import 'package:Projektgrupp4/ui/global_widgets/no_favorites_text.dart';
+import 'package:Projektgrupp4/ui/screens/notification_screen/notification_card.dart';
+import 'package:Projektgrupp4/ui/states/currencies.dart';
+
 import 'package:flutter/material.dart';
-import 'package:loading_animations/loading_animations.dart';
 import 'package:provider/provider.dart';
+import 'package:loading_animations/loading_animations.dart';
 
 class NotificationListView extends StatelessWidget {
   bool checkThreshold(Currency currency) {

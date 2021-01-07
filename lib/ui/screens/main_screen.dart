@@ -1,8 +1,9 @@
-import 'package:Projektgrupp4/global_widgets/custom_app_bar.dart';
-import 'package:Projektgrupp4/screens/favorites_screen/favorites_screen.dart';
-import 'package:Projektgrupp4/screens/notification_screen/notification_screen.dart';
-import 'package:Projektgrupp4/screens/search_screen/search_screen.dart';
-import 'package:Projektgrupp4/states/currencies.dart';
+import 'package:Projektgrupp4/ui/global_widgets/custom_app_bar.dart';
+import 'package:Projektgrupp4/ui/screens/favorites_screen/favorites_screen.dart';
+import 'package:Projektgrupp4/ui/screens/notification_screen/notification_screen.dart';
+import 'package:Projektgrupp4/ui/screens/search_screen/search_screen.dart';
+import 'package:Projektgrupp4/ui/states/currencies.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
