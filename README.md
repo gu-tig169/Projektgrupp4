@@ -47,7 +47,6 @@ A state provider that keeps track of current currencies and methods associated w
   * API to get current cryptocurrency market data.
 * **Firebase**
   * Cloud storage for user (key) specific favorites and thresholds.
-  * Android only atm
 * **SaveApi**
   * Generic function to integrate with API (json)
   * Not connected to API
