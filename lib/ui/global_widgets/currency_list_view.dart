@@ -1,5 +1,5 @@
-import 'package:Projektgrupp4/global_widgets/currency_card.dart';
 import 'package:Projektgrupp4/models/currency.dart';
+import 'package:Projektgrupp4/ui/global_widgets/currency_card.dart';
 import 'package:Projektgrupp4/ui/global_widgets/no_favorites_text.dart';
 import 'package:Projektgrupp4/ui/states/currencies.dart';
 
