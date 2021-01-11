@@ -22,24 +22,6 @@ class Currencies extends ChangeNotifier {
             lowerThreshold: double.parse('NaN'),
             lastUpdated: "never")
       ];
-
-    // Test currencies
-    // if (list == null)
-    // list = List.generate(
-    //     5,
-    //     (index) => Currency(
-    //           name: 'TestCurrency-$index',
-    //           symbol: 'TST$index',
-    //           priceUsd: 130000.0,
-    //           priceBtc: 1,
-    //           percentChange24hUsd: 5,
-    //           isFavorite: true,
-    //           hasUpperThreshold: true,
-    //           upperThreshold: 99999,
-    //           hasLowerThreshold: true,
-    //           lowerThreshold: 9999,
-    //           lastUpdated: "igår asså",
-    //           ));
   }
 
   List<Currency> _list = List<Currency>();
@@ -60,11 +42,13 @@ class Currencies extends ChangeNotifier {
         target.isFavorite = true;
         if (favorites[symbol]['upperThreshold'] != null) {
           target.hasUpperThreshold = true;
-          target.upperThreshold = double.parse(favorites[symbol]['upperThreshold'].toString());
+          target.upperThreshold =
+              double.parse(favorites[symbol]['upperThreshold'].toString());
         }
         if (favorites[symbol]['lowerThreshold'] != null) {
           target.hasLowerThreshold = true;
-          target.lowerThreshold = double.parse(favorites[symbol]['lowerThreshold'].toString());
+          target.lowerThreshold =
+              double.parse(favorites[symbol]['lowerThreshold'].toString());
         }
       }
     }
