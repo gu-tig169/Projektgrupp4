@@ -20,7 +20,7 @@ class NotificationCard extends StatelessWidget {
         child: Row(
           children: [
             _icon(),
-            Padding(padding: EdgeInsets.only(right: 24.0)),
+            Padding(padding: EdgeInsets.only(right: 12.0)),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

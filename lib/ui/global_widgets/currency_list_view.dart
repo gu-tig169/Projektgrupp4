@@ -105,8 +105,11 @@ class _CurrencyListViewState extends State<CurrencyListView> {
               )),
           Expanded(
             flex: 1,
-            child: Text(
-              ' (24 h)',
+            child: Container(
+              padding: EdgeInsets.only(top: 6),
+              child: Text(
+                '  (24 h)',
+              ),
             ),
           )
         ],

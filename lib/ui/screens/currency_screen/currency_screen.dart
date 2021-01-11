@@ -57,7 +57,7 @@ class _CurrencyScreenState extends State<CurrencyScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar(context, title: widget.currency.name, actions: [
-        Tooltip(
+        /*Tooltip(
           message: 'Please enter notification specifications to save',
           child: TextButton(
               onPressed: (_saveCheck())
@@ -87,42 +87,45 @@ class _CurrencyScreenState extends State<CurrencyScreen> {
                     }
                   : null,
               child: Text('Save')),
-        )
+        )*/
       ]),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Container(
-            padding: EdgeInsets.only(left: 24.0, right: 24.0, top: 12.0, bottom: 12.0),
-            decoration: BoxDecoration(color: Theme.of(context).primaryColor),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text('Price', style: TextStyle(color: Colors.white, fontSize: 14.0)),
-                    Text('Change (24h)', style: TextStyle(color: Colors.white, fontSize: 14.0))
-                  ],
-                ),
-                Row(
-                  children: [
-                    Tooltip(
-                      message: '\$${widget.currency.priceUsd.toString()} USD',
-                      child: Text('\$${widget.currency.priceUsd.toStringAsFixed(3)} USD',
-                          style: TextStyle(color: Colors.white, fontSize: 24.0)),
-                    ),
-                    Spacer(flex: 1),
-                    percentageText(
-                        widget.currency.percentChange24hUsd,
-                        TextStyle(
-                            fontSize: Theme.of(context).textTheme.headline6.fontSize,
-                            fontWeight: FontWeight.bold))
-                  ],
-                ),
-                Text('Updated: ' + widget.currency.lastUpdatedGMTString(),
-                    style: TextStyle(color: Colors.white, fontSize: 12))
-              ],
+          Padding(
+            padding: const EdgeInsets.only(left: 6, right: 6),
+            child: Container(
+              padding: EdgeInsets.only(left: 24.0, right: 24.0, top: 12.0, bottom: 12.0),
+              decoration: BoxDecoration(color: Theme.of(context).primaryColor),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('Price', style: TextStyle(color: Colors.white, fontSize: 14.0)),
+                      Text('Change (24h)', style: TextStyle(color: Colors.white, fontSize: 14.0))
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Tooltip(
+                        message: '\$${widget.currency.priceUsd.toString()} USD',
+                        child: Text('\$${widget.currency.priceUsd.toStringAsFixed(3)} USD',
+                            style: TextStyle(color: Colors.white, fontSize: 24.0)),
+                      ),
+                      Spacer(flex: 1),
+                      percentageText(
+                          widget.currency.percentChange24hUsd,
+                          TextStyle(
+                              fontSize: Theme.of(context).textTheme.headline6.fontSize,
+                              fontWeight: FontWeight.bold))
+                    ],
+                  ),
+                  Text('Updated: ' + widget.currency.lastUpdatedGMTString(),
+                      style: TextStyle(color: Colors.white, fontSize: 12))
+                ],
+              ),
             ),
           ),
           Padding(padding: EdgeInsets.only(top: 24.0)),
@@ -217,6 +220,53 @@ class _CurrencyScreenState extends State<CurrencyScreen> {
               Text('USD')
             ],
           ),
+          Padding(
+            padding: const EdgeInsets.only(top: 36.0),
+            child: Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  boxShadow: [BoxShadow(blurRadius: 1.0, offset: Offset.fromDirection(3.0))],
+                  gradient: LinearGradient(
+                    colors: [
+                      Theme.of(context).primaryColor,
+                      Colors.purple[300],
+                    ],
+                  )),
+              child: TextButton(onPressed: (_saveCheck())
+                    ? () {
+                        Provider.of<Currencies>(context, listen: false).updateCurrency(
+                          symbol: widget.currency.symbol,
+                          isFavorite: _isFavorite,
+                          hasUpperThreshold: _hasUpperThreshold,
+                          upperThreshold: (upperController.text != '')
+                              ? double.parse(upperController.text)
+                              : null,
+                          hasLowerThreshold: _hasLowerThreshold,
+                          lowerThreshold: (lowerController.text != '')
+                              ? double.parse(lowerController.text)
+                              : null,
+                        );
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext context) => AlertDialog(
+                                  title: Text('Saved notification settings'),
+                                  actions: [
+                                    TextButton(
+                                        onPressed: () => Navigator.pop(context),
+                                        child: Container(
+                                          child: Text('  Got it!  '),
+                                          decoration: BoxDecoration(
+                                            color: Color(0xFFF8D8FF),
+                                        borderRadius: BorderRadius.circular(100),
+                                        border: Border.all(width: 1, color: Theme.of(context).primaryColor)),),
+                                        )
+                                  ],
+                                ));
+                      }
+                    : null, child: Text('  Save thresholds  ',
+              style: TextStyle(color: Colors.white),)),
+            ),
+          )
         ],
       ),
     );
