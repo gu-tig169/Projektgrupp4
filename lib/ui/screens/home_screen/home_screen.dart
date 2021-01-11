@@ -79,7 +79,7 @@ class HomeScreen extends StatelessWidget {
         );
       },
       child: Padding(
-          padding: EdgeInsets.only(top: 90),
+          padding: EdgeInsets.only(top: 60),
           child: Container(
             margin: EdgeInsets.only(left: 24.0, right: 24.0),
             width: 340,
