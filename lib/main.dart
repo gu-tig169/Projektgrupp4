@@ -9,8 +9,6 @@ void main() {
       create: (context) => Currencies(), child: MyApp()));
 }
 
-// TODO: Test Branch
-
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
